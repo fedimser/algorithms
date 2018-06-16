@@ -91,7 +91,6 @@ class FastMultiplier {
 
  public:
   // Multiplies two polynomials modulo P1*P2 (P1*P2>1.85e18).
-  // Maximal power of result polynomial
   vector<int64_t> multiply(const vector<int64_t> x, const vector<int64_t> y) {
     int x_size = x.size();
     int y_size = y.size();
