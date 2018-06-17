@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class FastMultiplier {
+class FastMultiplyer {
   const int64_t P1 = 2013265921;
   const int64_t P2 = 919601153;
   const int64_t R12 = 229239021; //P1^-1 (mod P2)
@@ -38,9 +38,6 @@ class FastMultiplier {
   // Returns such a, that 0 <= a < P1*P2; a%P1 = a1, a%P2 = a2.
   // (Garner algorithm).
   inline int64_t restore(int64_t a1, int64_t a2) {
-    assert(R12 == rev_mod(P1, P2));
-    assert(0 <= a1 && a1 < P1);
-    assert(0 <= a2 && a2 < P2);
     int64_t x2 = mod_signed((a2-a1) * R12, P2);
     return a1 + P1 * x2;
   }
@@ -89,9 +86,17 @@ class FastMultiplier {
     }
   }
 
+
  public:
+  // Removes all tailing zeros.
+  inline void cut(vector<int64_t>& x) {
+    int n = x.size()-1;
+    while (x[n]==0 && n!=0) n--;
+    x.resize(n+1);
+  }
+
   // Multiplies two polynomials modulo P1*P2 (P1*P2>1.85e18).
-  vector<int64_t> multiply(const vector<int64_t> x, const vector<int64_t> y) {
+  vector<int64_t> multiply(const vector<int64_t>& x, const vector<int64_t>& y) {
     int x_size = x.size();
     int y_size = y.size();
     int res_min_size = x_size+y_size-1;
@@ -119,24 +124,35 @@ class FastMultiplier {
     fft(a2, false);
     fft(b2, false);
 
-    vector<int64_t> c1(n);
-    vector<int64_t> c2(n);
-    for (int i=0; i<n; i++) c1[i] = (a1[i]*b1[i]) % P1;
-    for (int i=0; i<n; i++) c2[i] = (a2[i]*b2[i]) % P2;
+    for (int i=0; i<n; i++) a1[i] = (a1[i]*b1[i]) % P1;
+    for (int i=0; i<n; i++) a2[i] = (a2[i]*b2[i]) % P2;
 
     prepare_fft(1);
-    fft(c1, true);
+    fft(a1, true);
     prepare_fft(2);
-    fft(c2, true);
+    fft(a2, true);
 
-    vector<int64_t> ans(n);
-    int last_non_zero = 0;
-    for(int i=0; i<n; i++) {
-      ans[i] = restore(c1[i], c2[i]);
-      if(ans[i]!=0) last_non_zero = i;
-    }
-    ans.resize(last_non_zero + 1);
-    return ans;
+    for(int i=0; i<n; i++) a1[i] = restore(a1[i], a2[i]);
+    cut(a1);
+    return a1;
+  }
+
+  // Multiplies polynomials modulo P1 (2.01e9). Destroys data.
+  inline vector<int64_t> multiply_fast(vector<int64_t>& x, vector<int64_t>& y) {
+    int res_min_size = x.size()+y.size()-1;
+    int n = 1;
+    while(n < res_min_size) n<<=1;
+
+    x.resize(n);
+    y.resize(n);
+    prepare_fft(1);
+    fft(x, false);
+    fft(y, false);
+
+    for (int i=0; i<n; i++) x[i] = (x[i]*y[i]) % P1;
+    fft(x, true);
+    cut(x);
+    return x;
   }
 };
 
