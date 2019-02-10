@@ -8,3 +8,5 @@ Segment tree with addition on segment and global minimum: https://codeforces.com
 Matrix multiplication, discrete root/log: https://codeforces.com/contest/1106/submission/49511444
 
 Segment tree with update on range and query on range: https://codeforces.com/contest/1114/submission/49736495
+
+Good random: https://codeforces.com/contest/1114/submission/49737616
