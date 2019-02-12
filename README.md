@@ -9,4 +9,6 @@ Matrix multiplication, discrete root/log: https://codeforces.com/contest/1106/su
 
 Segment tree with update on range and query on range: https://codeforces.com/contest/1114/submission/49736495
 
+Max clique (randomized heuristic): https://codeforces.com/contest/1105/submission/48640589
+
 Good random: https://codeforces.com/contest/1114/submission/49737616
