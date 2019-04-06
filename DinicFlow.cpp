@@ -118,6 +118,7 @@ public:
     AddEdgeInternal(to, from, capacity_back);
   }
 
+  // Finds max flow from 0 to 1.
   int MaxFlow() {
     for (Edge &edge : edges_) {
       edge.capacity_cur = edge.capacity;
