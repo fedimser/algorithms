@@ -12,3 +12,5 @@ Segment tree with update on range and query on range: https://codeforces.com/con
 Max clique (randomized heuristic): https://codeforces.com/contest/1105/submission/48640589
 
 Good random: https://codeforces.com/contest/1114/submission/49737616
+
+Diophantine equation ax+by=c;x,y>=0;x+y->min: https://codeforces.com/contest/1244/submission/62513297
