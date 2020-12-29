@@ -16,3 +16,5 @@ Good random: https://codeforces.com/contest/1114/submission/49737616
 Diophantine equation ax+by=c;x,y>=0;x+y->min: https://codeforces.com/contest/1244/submission/62513297
 
 Suffix automaton: https://codeforces.com/contest/1469/submission/102637231
+
+Binary search on sehment tree (example): https://codeforces.com/contest/1440/submission/102673366
