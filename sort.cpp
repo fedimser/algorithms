@@ -4,7 +4,7 @@
 
 namespace QuickSort {
     template <typename T>
-    swap (T& first, T& second) {
+    void swap (T& first, T& second) {
         T buffer = first;
         first = second;
         second = buffer;

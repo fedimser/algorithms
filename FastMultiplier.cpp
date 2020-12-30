@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class FastMultiplyer {
+class FastMultiplier {
   const int64_t P1 = 2013265921;
   const int64_t P2 = 919601153;
   const int64_t R12 = 229239021;   // P1^-1 (mod P2)
