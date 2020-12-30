@@ -17,4 +17,4 @@ Diophantine equation ax+by=c;x,y>=0;x+y->min: https://codeforces.com/contest/124
 
 Suffix automaton: https://codeforces.com/contest/1469/submission/102637231
 
-Binary search on sehment tree (example): https://codeforces.com/contest/1440/submission/102673366
+Binary search on segment tree (example): https://codeforces.com/contest/1440/submission/102673366
