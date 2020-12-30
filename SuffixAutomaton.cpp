@@ -70,6 +70,6 @@ int main() {
 
     assert(!sa.contains_substring(s + "#"));
     assert(!sa.contains_substring("#"));
-    assert(!sa.contains_substring("000000"));
+    assert(!sa.contains_substring("0000000"));
     assert(!sa.contains_substring("cabb"));
 }
