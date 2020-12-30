@@ -168,8 +168,7 @@ int main() {
   FastMultiplier mult;
   vector<int64_t> a(10, 1);
   vector<int64_t> ans = mult.multiply(a, a);
-  for (int64_t x : ans)
-    cout << x << " ";
-
+  vector<int64_t> expected {1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1};
+  assert(ans == expected);
   return 0;
 }
