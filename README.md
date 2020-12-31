@@ -25,8 +25,6 @@ function which tests the algorithms and returns 0 if and only if all tests pass.
 Here is list of my successful submission on Codeforces which use some 
 algorithms. I might check in some of them into this repository later.
 
-* Effective Dijkstra: https://codeforces.com/contest/1076/submission/47855774
-
 * Segment tree with addition on segment and global minimum: https://codeforces.com/contest/1108/submission/48909309
 
 * Matrix multiplication, discrete root/log: https://codeforces.com/contest/1106/submission/49511444
