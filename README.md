@@ -33,4 +33,12 @@ algorithms. I might check in some of them into this repository later.
 
 * Diophantine equation ax+by=c;x,y>=0;x+y->min: https://codeforces.com/contest/1244/submission/62513297
 
-* Binary search on segment tree (example): https://codeforces.com/contest/1440/submission/102673366
+* Segment tree:
+
+    - With addition on segment and global minimum: https://codeforces.com/contest/1108/submission/48909309	
+
+    - With SET and SUM on segment: https://codeforces.com/contest/1478/submission/107305419
+
+    - With update on range and query on range: https://codeforces.com/contest/1114/submission/49736495	
+
+    - Binary search on segment tree (example): https://codeforces.com/contest/1440/submission/102673366
