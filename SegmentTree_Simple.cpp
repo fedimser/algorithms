@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Supports: set in point and sum on range.
+
 template <class T> class SegmentTree {
 private:
   vector<T> tree;

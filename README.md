@@ -25,13 +25,7 @@ function which tests the algorithms and returns 0 if and only if all tests pass.
 Here is list of my successful submission on Codeforces which use some 
 algorithms. I might check in some of them into this repository later.
 
-* Segment tree with addition on segment and global minimum: https://codeforces.com/contest/1108/submission/48909309
-
-* Segment tree with SET and SUM on segment: https://codeforces.com/contest/1478/submission/107305419 . TODO: implement universal Segment Tree, supporting SET and ADD on segment, and SUM/MIN/MAX on segement.
-
 * Matrix multiplication, discrete root/log: https://codeforces.com/contest/1106/submission/49511444
-
-* Segment tree with update on range and query on range: https://codeforces.com/contest/1114/submission/49736495
 
 * Max clique (randomized heuristic): https://codeforces.com/contest/1105/submission/48640589
 
