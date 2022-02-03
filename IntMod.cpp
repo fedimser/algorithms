@@ -4,15 +4,36 @@ using namespace std;
 int64_t MOD = 1000000007;
 struct IntMod {
   int64_t v;
-  IntMod(int64_t v_) {v=v_%MOD;if(v<0)v+=MOD;}
+  IntMod() : v(0) {}
+  IntMod(int64_t v_) : v(v_%MOD) {if(v<0)v+=MOD;}
   inline IntMod operator + (const IntMod& y) const {return {(v+y.v)%MOD};}
   inline IntMod operator - (const IntMod& y) const {return {(v-y.v+MOD)%MOD};}
   inline IntMod operator * (const IntMod& y) const {return {(v*y.v)%MOD};}
   inline IntMod pow(int64_t y) const {IntMod a(1),m(v);while(y!=0){if(y&1){a=a*m;}m=m*m;y>>=1;}return a;}
-  bool operator==(const IntMod& y){return v==y.v;}
+  inline IntMod inverse() const {return pow(MOD-2);}
+  bool operator == (const IntMod& y){return v==y.v;}
+  inline void operator += (const IntMod& y) {v=(v+y.v)%MOD;}
 };
-inline IntMod operator / (const IntMod& x, const IntMod& y) {return x * y.pow(MOD-2);}
+inline IntMod operator / (const IntMod& x, const IntMod& y) {return x * y.inverse();}
 ostream& operator<<(ostream& os, const IntMod& x){return os<<x.v;}
+
+struct BinCoefs {
+  vector<IntMod> facts;
+  vector<IntMod> inv_facts;
+  BinCoefs(int max_n) {
+    facts = vector<IntMod>(max_n+1);
+    inv_facts = vector<IntMod>(max_n+1);
+    facts[0]=inv_facts[0]=1;
+	for(int i=1;i<=max_n;i++) {
+      facts[i] = facts[i-1] * i;
+      inv_facts[i] = facts[i].inverse();
+	}
+  }
+  IntMod C(int n, int m) {
+    if(m<0 || m > n) return 0;
+    return facts[n] * inv_facts[m] * inv_facts[n-m];
+  }
+};
 
 int main() {
     IntMod a = 10;
@@ -24,13 +45,29 @@ int main() {
     assert(a/b == 1/IntMod(5));
     assert(a/b*b == a);
 
+    assert(a.inverse() == IntMod(700000005));
+    assert(b.inverse() == IntMod(140000001));
+    assert(a.inverse().inverse() == a);
+
     assert(IntMod(2).pow(1000010) / IntMod(2).pow(1000000) == 1024);
+
+    a = IntMod(-2);
+    a += IntMod(4);
+    assert(a==2);
 
     std::stringstream ss;
     ss << IntMod(1234);
     string s;
     ss >> s;
     assert(s == "1234");
+
+    BinCoefs bc(100);
+    assert(bc.C(10,0) == 1);
+    assert(bc.C(10,1) == 10);
+    assert(bc.C(10,3) == 120);
+    assert(bc.C(10,5) == 252);
+    assert(bc.C(10,11) == 0);
+    assert(bc.C(100,40) == 213157642);
 
     return 0;
 }
