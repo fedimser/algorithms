@@ -6,13 +6,16 @@ struct IntMod {
   int64_t v;
   IntMod() : v(0) {}
   IntMod(int64_t v_) : v(v_%MOD) {if(v<0)v+=MOD;}
-  inline IntMod operator + (const IntMod& y) const {return {(v+y.v)%MOD};}
-  inline IntMod operator - (const IntMod& y) const {return {(v-y.v+MOD)%MOD};}
+  IntMod(const IntMod& v_) : v(v_.v) {} 
+  inline IntMod operator + (const IntMod& y) const {IntMod a(*this); a+=y; return a;}
+  inline IntMod operator - (const IntMod& y) const {IntMod a(*this); a-=y; return a;}
   inline IntMod operator * (const IntMod& y) const {return {(v*y.v)%MOD};}
   inline IntMod pow(int64_t y) const {IntMod a(1),m(v);while(y!=0){if(y&1){a=a*m;}m=m*m;y>>=1;}return a;}
   inline IntMod inverse() const {return pow(MOD-2);}
   bool operator == (const IntMod& y){return v==y.v;}
-  inline void operator += (const IntMod& y) {v=(v+y.v)%MOD;}
+  inline void operator += (const IntMod& y) {(v+=y.v)>=MOD && (v-=MOD);}
+  inline void operator -= (const IntMod& y) {(v-=y.v)<0 && (v+=MOD);} 
+  inline void operator *= (const IntMod& y) {v*=y.v; v%=MOD;}
 };
 inline IntMod operator / (const IntMod& x, const IntMod& y) {return x * y.inverse();}
 ostream& operator<<(ostream& os, const IntMod& x){return os<<x.v;}
@@ -35,7 +38,8 @@ struct BinCoefs {
   }
 };
 
-int main() {
+
+int main() {  
     IntMod a = 10;
     IntMod b = 50;
     assert(a+b == IntMod(60));
@@ -54,6 +58,14 @@ int main() {
     a = IntMod(-2);
     a += IntMod(4);
     assert(a==2);
+    a += IntMod(MOD-5);
+    assert(a==-3);
+    a -= IntMod(97);
+    assert(a==-100);
+    a*=-1;
+    assert(a==100);
+    a*=100000000;
+    assert(a==999999937);
 
     std::stringstream ss;
     ss << IntMod(1234);
