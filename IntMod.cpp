@@ -21,22 +21,12 @@ inline IntMod operator / (const IntMod& x, const IntMod& y) {return x * y.invers
 ostream& operator<<(ostream& os, const IntMod& x){return os<<x.v;}
 
 struct BinCoefs {
-  vector<IntMod> facts;
-  vector<IntMod> inv_facts;
-  BinCoefs(int max_n) {
-    facts = vector<IntMod>(max_n+1);
-    inv_facts = vector<IntMod>(max_n+1);
-    facts[0]=inv_facts[0]=1;
-	for(int i=1;i<=max_n;i++) {
-      facts[i] = facts[i-1] * i;
-      inv_facts[i] = facts[i].inverse();
-	}
-  }
-  IntMod C(int n, int m) {
-    if(m<0 || m > n) return 0;
-    return facts[n] * inv_facts[m] * inv_facts[n-m];
-  }
+  vector<IntMod> facts,inv_facts;
+  BinCoefs(int max_n) {facts = vector<IntMod>(max_n+1);inv_facts = vector<IntMod>(max_n+1);facts[0]=inv_facts[0]=1;for(int i=1;i<=max_n;i++){facts[i] = facts[i-1] * i;inv_facts[i] = facts[i].inverse();}}
+  IntMod C(int n, int m) {if(m<0 || m > n) return 0;return facts[n] * inv_facts[m] * inv_facts[n-m];}
+  IntMod fact(int n) {return facts[n];}
 };
+BinCoefs BC(100);
 
 
 int main() {  
@@ -73,13 +63,16 @@ int main() {
     ss >> s;
     assert(s == "1234");
 
-    BinCoefs bc(100);
-    assert(bc.C(10,0) == 1);
-    assert(bc.C(10,1) == 10);
-    assert(bc.C(10,3) == 120);
-    assert(bc.C(10,5) == 252);
-    assert(bc.C(10,11) == 0);
-    assert(bc.C(100,40) == 213157642);
+    assert(BC.C(10,0) == 1);
+    assert(BC.C(10,1) == 10);
+    assert(BC.C(10,3) == 120);
+    assert(BC.C(10,5) == 252);
+    assert(BC.C(10,11) == 0);
+    assert(BC.C(100,40) == 213157642);
+    assert(BC.C(100,40) == 213157642);
+    assert(BC.fact(0) == 1);
+    assert(BC.fact(5) == 120);
+    assert(BC.fact(100) == 437918130);
 
     return 0;
 }

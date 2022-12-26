@@ -20,12 +20,13 @@ struct Primes {
     vector<pair<int64_t, int64_t>> ans;if (x > N) {int64_t sqrt_x = ceil(sqrt(x));for(int p: primes) {if (p>sqrt_x) break;if (x%p==0) {reduce(x,p,ans);sqrt_x = ceil(sqrt(x));if(x<=N)break;}}if (x > N) {ans.push_back({x, 1}); return ans;}}while(x!=1) reduce(x, e[x], ans);return ans;
   }
 };
+Primes PR(1000000);
 
-void TestPrimes(const Primes& p, int64_t n, vector<int64_t> true_prime_divisors) {
-    assert(p.IsPrime(n) == (true_prime_divisors.size()==1 && true_prime_divisors[0]==n));
+void TestPrimes(int64_t n, vector<int64_t> true_prime_divisors) {
+    assert(PR.IsPrime(n) == (true_prime_divisors.size()==1 && true_prime_divisors[0]==n));
 
-    vector<int64_t> divisors = p.Divisors(n);
-    vector<pair<int64_t,int64_t>> factors = p.Factors(n);
+    vector<int64_t> divisors = PR.Divisors(n);
+    vector<pair<int64_t,int64_t>> factors = PR.Factors(n);
 
     assert(divisors.size()==true_prime_divisors.size());
     assert(factors.size()==true_prime_divisors.size());
@@ -40,39 +41,38 @@ void TestPrimes(const Primes& p, int64_t n, vector<int64_t> true_prime_divisors)
 }
 
 int main() {
-    Primes p(1000000);
-    assert(p.primes.size() == 78498);
-    assert(p.primes[0] == 2);
-    assert(p.primes[1000] == 7927);
-    assert(p.primes[78497] == 999983);
+    assert(PR.primes.size() == 78498);
+    assert(PR.primes[0] == 2);
+    assert(PR.primes[1000] == 7927);
+    assert(PR.primes[78497] == 999983);
 
-    TestPrimes(p, 1, {});
-    TestPrimes(p, 2, {2});
-    TestPrimes(p, 3, {3});
-    TestPrimes(p, 4, {2});
-    TestPrimes(p, 5, {5});
-    TestPrimes(p, 6, {2,3});
-    TestPrimes(p, 7, {7});
-    TestPrimes(p, 8, {2});
-    TestPrimes(p, 9, {3});
-    TestPrimes(p, 10, {2,5});
-    TestPrimes(p, 20, {2,5});
-    TestPrimes(p, 36, {2,3});
-    TestPrimes(p, 77, {7,11});
-    TestPrimes(p, 100, {2,5});
-    TestPrimes(p, 121, {11});
-    TestPrimes(p, 7927, {7927});
-    TestPrimes(p, 30030, {2,3,5,7,11,13});
-    TestPrimes(p, 67500, {2,3,5});
-    TestPrimes(p, 707960, {2,5,11,1609});
-    TestPrimes(p, 1000000, {2,5});
-    TestPrimes(p, 1000001, {101,9901});
-    TestPrimes(p, 21999626, {2,11,999983});
-    TestPrimes(p, 967983544, {2,11,999983});
-    TestPrimes(p, 1000000007, {1000000007});
-    TestPrimes(p, 999966000289, {999983});
-    TestPrimes(p, 999999999999, {3,7,11,13,37,101,9901});
-    TestPrimes(p, 1000000000000, {2,5});
+    TestPrimes(1, {});
+    TestPrimes(2, {2});
+    TestPrimes(3, {3});
+    TestPrimes(4, {2});
+    TestPrimes(5, {5});
+    TestPrimes(6, {2,3});
+    TestPrimes(7, {7});
+    TestPrimes(8, {2});
+    TestPrimes(9, {3});
+    TestPrimes(10, {2,5});
+    TestPrimes(20, {2,5});
+    TestPrimes(36, {2,3});
+    TestPrimes(77, {7,11});
+    TestPrimes(100, {2,5});
+    TestPrimes(121, {11});
+    TestPrimes(7927, {7927});
+    TestPrimes(30030, {2,3,5,7,11,13});
+    TestPrimes(67500, {2,3,5});
+    TestPrimes(707960, {2,5,11,1609});
+    TestPrimes(1000000, {2,5});
+    TestPrimes(1000001, {101,9901});
+    TestPrimes(21999626, {2,11,999983});
+    TestPrimes(967983544, {2,11,999983});
+    TestPrimes(1000000007, {1000000007});
+    TestPrimes(999966000289, {999983});
+    TestPrimes(999999999999, {3,7,11,13,37,101,9901});
+    TestPrimes(1000000000000, {2,5});
 
     return 0;
 }
