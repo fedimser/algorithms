@@ -12,20 +12,22 @@ struct Primes {
     if(x>N) {int64_t sqrt_x = ceil(sqrt(x));for(int p: primes) {if (p>sqrt_x) break;if (x%p==0) return false;}return true;}return e[x]==x;
   }
   // Prime divisors of x. No repeats. Ascending. 1<=x<=N^2.
-  vector<int64_t> Divisors(int64_t x) const {
+  vector<int64_t> PrimeDivisors(int64_t x) const {
     vector<int64_t> ans;if (x > N) {int64_t sqrt_x = ceil(sqrt(x));for(int p: primes) {if (p>sqrt_x) break;if (x%p==0) {reduce(x,p,ans);sqrt_x = ceil(sqrt(x));if(x<=N)break;}}if (x > N) {ans.push_back(x); return ans;}}while(x!=1) reduce(x, e[x], ans);return ans;
   }
   // Prime divisors of x with multiplicity. Ascending. 1<=x<=N^2.
   vector<pair<int64_t, int64_t>> Factors(int64_t x) const {
     vector<pair<int64_t, int64_t>> ans;if (x > N) {int64_t sqrt_x = ceil(sqrt(x));for(int p: primes) {if (p>sqrt_x) break;if (x%p==0) {reduce(x,p,ans);sqrt_x = ceil(sqrt(x));if(x<=N)break;}}if (x > N) {ans.push_back({x, 1}); return ans;}}while(x!=1) reduce(x, e[x], ans);return ans;
   }
+  // Number of integers 0<x<=n such that gcd(x,n)=1. 1<=x<=N^2.
+  int Totient(int n) {for(int p: PrimeDivisors(n))n=(p-1)*(n/p);return n;}
 };
 Primes PR(1000000);
 
 void TestPrimes(int64_t n, vector<int64_t> true_prime_divisors) {
     assert(PR.IsPrime(n) == (true_prime_divisors.size()==1 && true_prime_divisors[0]==n));
 
-    vector<int64_t> divisors = PR.Divisors(n);
+    vector<int64_t> divisors = PR.PrimeDivisors(n);
     vector<pair<int64_t,int64_t>> factors = PR.Factors(n);
 
     assert(divisors.size()==true_prime_divisors.size());
@@ -73,6 +75,12 @@ int main() {
     TestPrimes(999966000289, {999983});
     TestPrimes(999999999999, {3,7,11,13,37,101,9901});
     TestPrimes(1000000000000, {2,5});
+
+    assert(PR.Totient(1) == 1);
+    assert(PR.Totient(2) == 1);
+    assert(PR.Totient(6) == 2);
+    assert(PR.Totient(30030) == 5760);
+    assert(PR.Totient(1000000007) == 1000000006);
 
     return 0;
 }
