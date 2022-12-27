@@ -45,6 +45,17 @@ struct Pow2 {
 };
 Pow2 P2(100007);
 
+// Fits P(i)=y_i (i=0..N). Returns f(x). Complexity O(n).
+IntMod LagrangeInterpolation(vector<IntMod> y, IntMod x){
+  int N = y.size()-1;assert(N<=BC.fact_.size()-1);
+  vector<IntMod> L(N+1,1), R(N+1,1);
+  for(int i=0;i<N;i++)L[i+1]=L[i]*(x-i);
+  for(int i=N;i>0;i--)R[i-1]=R[i]*(x-i);
+  IntMod ans=0;
+  for(int i=0;i<=N;i++){IntMod t=y[i]*L[i]*R[i]*BC.inv_fact(i)*BC.inv_fact(N-i);if ((N-i)%2==0) ans+=t; else ans-=t;}
+  return ans;
+}
+
 
 int main() {  
     IntMod a = 10;
@@ -93,6 +104,8 @@ int main() {
 
     assert(P2(10) == 1024);
     assert(P2(12345) == IntMod(2).pow(12345));
+
+    assert(LagrangeInterpolation({0,1,4}, 25) == 625);
 
     return 0;
 }
