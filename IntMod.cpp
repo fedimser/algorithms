@@ -17,6 +17,7 @@ struct IntMod {
   	return IntMod(x+(x<0)*MOD);
   }
   bool operator == (const IntMod& y){return v==y.v;}
+  bool operator != (const IntMod& y){return v!=y.v;}
   inline void operator += (const IntMod& y) {(v+=y.v)>=MOD && (v-=MOD);}
   inline void operator -= (const IntMod& y) {(v-=y.v)<0 && (v+=MOD);}
   inline void operator *= (const IntMod& y) {v*=y.v; v%=MOD;}
@@ -84,6 +85,8 @@ int main() {
     assert(a==100);
     a*=100000000;
     assert(a==999999937);
+    assert(!(a!=999999937));
+    assert(a!=5);
 
     std::stringstream ss;
     ss << IntMod(1234);

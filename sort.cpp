@@ -70,6 +70,5 @@ int main() {
             std::cout<<"FAIL";
             return 1;
         }
-    std::cout<<"OK\n";
     return 0;
 }
