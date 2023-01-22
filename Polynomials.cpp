@@ -5,9 +5,11 @@ template <typename T>
 struct Poly {
   vector<T> a;
   Poly() : a({0}) {}
+  Poly(T a0) : a({a0}) {}
   Poly(const Poly<T>& other) : a(other.a) {}
   Poly(const initializer_list<T>& a) : a(vector<T>(a)) {}
   Poly(const vector<T>& a_) : a(a_) {if(a.empty())a.push_back(0);normalize();}
+  inline T coef(size_t i) {return i>=a.size() ? 0 : a[i];}
   inline void operator += (const Poly<T>& other) {
     int n = min(a.size(), other.a.size());
     for(int i=0;i<n;i++) {a[i]+=other.a[i];}
@@ -24,7 +26,7 @@ struct Poly {
   }
   // Multiply by (x-x0).
   inline void MultByBinomial(T x0) {int d=deg();a.push_back(a[d]);for(int i=d;i>=1;i--)a[i]=a[i-1]-x0*a[i];a[0]*=(x0*-1);}
-    // Multiply by x^p.
+  // Multiply by x^p.
   void ShiftLeft(int p) {a.resize(a.size()+p);for(int i=a.size();i>=p;i--)a[i]=a[i-p];for(int i=0;i<p;i++)a[i]=0;}
   // Adds delta * x^i.
   void AddCoef(int i, T delta) {while(deg()<i)a.push_back(0);a[i]+=delta;normalize();}
@@ -35,7 +37,7 @@ struct Poly {
 template <typename T> Poly<T> operator*(const T& x, const Poly<T>& y){return y*x;}
 template <typename T> ostream& operator<<(ostream& os, const Poly<T>& x){
   int d = x.deg();os<<x.a[d]<<"x^"<<d;
-  for(int i=d-1;i>=1;i--)if(x.a[i]!=0)os<<"+"<<x.a[i]<<"x^"<<i;if(x.a[0]!=0)os<<"+"<<x.a[0];return os;
+  for(int i=d-1;i>=1;i--){if(x.a[i]!=0){os<<"+"<<x.a[i]<<"x^"<<i;}}if(x.a[0]!=0)os<<"+"<<x.a[0];return os;
 }
 
 template <typename T>

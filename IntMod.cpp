@@ -16,8 +16,8 @@ struct IntMod {
   	while(r!=0){int64_t q=g/r;g%=r;swap(g,r);x-=q*y;swap(x,y);}
   	return IntMod(x+(x<0)*MOD);
   }
-  bool operator == (const IntMod& y){return v==y.v;}
-  bool operator != (const IntMod& y){return v!=y.v;}
+  bool operator == (const IntMod& y) const {return v==y.v;}
+  bool operator != (const IntMod& y) const {return v!=y.v;}
   inline void operator += (const IntMod& y) {(v+=y.v)>=MOD && (v-=MOD);}
   inline void operator -= (const IntMod& y) {(v-=y.v)<0 && (v+=MOD);}
   inline void operator *= (const IntMod& y) {v*=y.v; v%=MOD;}
