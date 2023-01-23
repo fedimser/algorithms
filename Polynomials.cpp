@@ -27,7 +27,10 @@ struct Poly {
   // Multiply by (x-x0).
   inline void MultByBinomial(T x0) {int d=deg();a.push_back(a[d]);for(int i=d;i>=1;i--)a[i]=a[i-1]-x0*a[i];a[0]*=(x0*-1);}
   // Multiply by x^p.
-  void ShiftLeft(int p) {a.resize(a.size()+p);for(int i=a.size();i>=p;i--)a[i]=a[i-p];for(int i=0;i<p;i++)a[i]=0;}
+  inline void ShiftLeft(int p) {
+	  if(p==0 || (a.size()==1 && a[0]==0))return;
+	  reverse(a.begin(), a.end());a.resize(a.size()+p);reverse(a.begin(), a.end());
+  }
   // Adds delta * x^i.
   void AddCoef(int i, T delta) {while(deg()<i)a.push_back(0);a[i]+=delta;normalize();}
   inline int deg() const {return a.size()-1;}
@@ -76,6 +79,9 @@ int main() {
   assert(10*p2 == Poly<int>({10,20,30}));
   stringstream ss;ss<<p2;string s; ss >> s;
   assert(s == "3x^2+2x^1+1");
+
+  p2.ShiftLeft(2);
+  assert(p2 == Poly<int>({0,0,1,2,3}));
 
   // Test interpolation.
   Interpolator<double> ip;
