@@ -12,9 +12,9 @@ struct IntMod {
   inline IntMod operator * (const IntMod& y) const {return {v*y.v};}
   inline IntMod pow(int64_t y) const {IntMod a(1),m(v);while(y!=0){if(y&1){a=a*m;}m=m*m;y>>=1;}return a;}
   inline IntMod inverse() const {
-  	int64_t g=MOD,r=v,x=0,y=1;
-  	while(r!=0){int64_t q=g/r;g%=r;swap(g,r);x-=q*y;swap(x,y);}
-  	return IntMod(x+(x<0)*MOD);
+    int64_t g=MOD,r=v,x=0,y=1;
+    while(r!=0){int64_t q=g/r;g%=r;swap(g,r);x-=q*y;swap(x,y);}
+    return IntMod(x+(x<0)*MOD);
   }
   bool operator == (const IntMod& y) const {return v==y.v;}
   bool operator != (const IntMod& y) const {return v!=y.v;}
@@ -28,9 +28,9 @@ ostream& operator<<(ostream& os, const IntMod& x){return os<<x.v;}
 struct BinCoefs {
   vector<IntMod> fact_,inv_,inv_fact_;
   BinCoefs(int N) {
-  	fact_.resize(N+1);inv_.resize(N+1);inv_fact_.resize(N+1);
-  	fact_[0]=inv_fact_[0]=fact_[1]=inv_[1]=inv_fact_[1]=1;
-  	for(int i=2;i<=N;i++){fact_[i]=fact_[i-1]*i;inv_[i]=inv_[MOD%i]*IntMod(MOD - MOD/i);inv_fact_[i] = inv_fact_[i-1]*inv_[i];}
+    fact_.resize(N+1);inv_.resize(N+1);inv_fact_.resize(N+1);
+    fact_[0]=inv_fact_[0]=fact_[1]=inv_[1]=inv_fact_[1]=1;
+    for(int i=2;i<=N;i++){fact_[i]=fact_[i-1]*i;inv_[i]=inv_[MOD%i]*IntMod(MOD - MOD/i);inv_fact_[i] = inv_fact_[i-1]*inv_[i];}
   }
   inline IntMod fact(int n) {return fact_[n];}
   inline IntMod inv(int n) {return inv_[n];}
@@ -40,9 +40,9 @@ struct BinCoefs {
 BinCoefs BC(100007);
 
 struct Pow2 {
-	vector<int> p;
-	Pow2(int N){p.resize(N+1);p[0]=1;for(int i=1;i<=N;i++){p[i]=p[i-1]<<1;if(p[i]>MOD)p[i]-=MOD;}}
-	IntMod operator()(int n) {return IntMod(p[n]);}
+  vector<int> p;
+  Pow2(int N){p.resize(N+1);p[0]=1;for(int i=1;i<=N;i++){p[i]=p[i-1]<<1;if(p[i]>MOD)p[i]-=MOD;}}
+  IntMod operator()(int n) {return IntMod(p[n]);}
 };
 Pow2 P2(100007);
 

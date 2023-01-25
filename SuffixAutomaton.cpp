@@ -7,17 +7,17 @@ class SuffixAutomaton {
   vector<State> st;
   int sz, last;
   SuffixAutomaton(const string& s) {
-  	st.resize(2*s.length() + 10);
-	st[0].len = 0; st[0].link = -1;
-	sz = 1;	last = 0;
-	for(char c: s) sa_extend(c);
+    st.resize(2*s.length() + 10);
+    st[0].len = 0; st[0].link = -1;
+    sz = 1;  last = 0;
+    for(char c: s) sa_extend(c);
   }
 
   // Returns -1 if transition doesn't exist, otherwise state id.
   // Root has id 1.
   int go(int sid, char c) const {
-  	auto it = st[sid].next.find(c);
-  	return (it==st[sid].next.end())?-1:(it->second);
+    auto it = st[sid].next.find(c);
+    return (it==st[sid].next.end())?-1:(it->second);
   }
 
   bool contains_substring(const string& s) const {

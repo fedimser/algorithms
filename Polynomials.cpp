@@ -28,8 +28,8 @@ struct Poly {
   inline void MultByBinomial(T x0) {int d=deg();a.push_back(a[d]);for(int i=d;i>=1;i--)a[i]=a[i-1]-x0*a[i];a[0]*=(x0*-1);}
   // Multiply by x^p.
   inline void ShiftLeft(int p) {
-	  if(p==0 || (a.size()==1 && a[0]==0))return;
-	  reverse(a.begin(), a.end());a.resize(a.size()+p);reverse(a.begin(), a.end());
+    if(p==0 || (a.size()==1 && a[0]==0))return;
+    reverse(a.begin(), a.end());a.resize(a.size()+p);reverse(a.begin(), a.end());
   }
   // Adds delta * x^i.
   void AddCoef(int i, T delta) {while(deg()<i)a.push_back(0);a[i]+=delta;normalize();}
