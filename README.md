@@ -33,6 +33,8 @@ algorithms. I might check in some of them into this repository later.
 
 * Diophantine equation ax+by=c;x,y>=0;x+y->min: https://codeforces.com/contest/1244/submission/62513297
 
+* Longest common subsequence (of 2 or 3 strings): https://codeforces.com/contest/1789/submission/195068679
+
 * Segment tree:
 
     - With addition on segment and global minimum: https://codeforces.com/contest/1108/submission/48909309	
