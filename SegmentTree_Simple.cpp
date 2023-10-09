@@ -7,15 +7,16 @@ template <class T> class SegmentTree {
 private:
   vector<T> tree;
   vector<T> data;
-  int N;
+  size_t N;
 
+  T IDENTITY = 0;
   inline T OP(T x, T y) { return x + y; }
 
-  T count_sum(int tv, int tl, int tr, int l, int r) {
+  T count_sum(size_t tv, size_t tl, size_t tr, size_t l, size_t r) {
     l = max(l, tl);
     r = min(r, tr);
     if (l >= r)
-      return T();
+      return IDENTITY;
     if (l == tl && r == tr)
       return tree[tv];
     int tm = (tl + tr) / 2;
@@ -23,7 +24,7 @@ private:
               count_sum(2 * tv + 1, tm, tr, l, r));
   }
 
-  void update_value(int tv, int tl, int tr, int idx, T new_val) {
+  void update_value(size_t tv, size_t tl, size_t tr, size_t idx, T new_val) {
     if (tl >= tr)
       return;
     if (tl == idx && tr == idx + 1) {
@@ -38,9 +39,9 @@ private:
     tree[tv] = OP(tree[2 * tv], tree[2 * tv + 1]);
   }
 
-  T build(int tv, int tl, int tr) {
+  T build(size_t tv, size_t tl, size_t tr) {
     if (tl >= tr)
-      return T();
+      return IDENTITY;
     if (tl + 1 == tr)
       return tree[tv] = data[tl];
     int tm = (tl + tr) / 2;
@@ -49,7 +50,7 @@ private:
 
 public:
   SegmentTree() : SegmentTree(vector<T>()) {}
-  SegmentTree(int n) : SegmentTree(vector<T>(n)) {}
+  SegmentTree(size_t n) : SegmentTree(vector<T>(n)) {}
   SegmentTree(vector<T> data_) {
     data = data_;
     N = data.size();
@@ -58,15 +59,15 @@ public:
       build(1, 0, N);
   }
 
-  void set(int idx, T new_value) {
+  void set(size_t idx, T new_value) {
     data[idx] = new_value;
     update_value(1, 0, N, idx, new_value);
   }
 
-  T get(int idx) { return data[idx]; }
+  T get(size_t idx) { return data[idx]; }
 
   // Counts sum [l, r).
-  T sum(int l, int r) { return count_sum(1, 0, N, max(0, l), min(N, r)); }
+  T sum(size_t l, size_t r) { return count_sum((size_t)1, (size_t)0, N, max((size_t)0, l), min(N, r)); }
 };
 
 int main() {
