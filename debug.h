@@ -14,8 +14,8 @@ void DebugPrint(std::vector<T> &v) {
   bool c = false;
   std::cout << "[";
   for (T &x : v) {
+    if (c) {std::cout << ",";} else {c=true;}
     std::cout << x;
-    if (c) std::cout << ","; else c=1;
   }
   std::cout << "]";
 }
@@ -25,8 +25,8 @@ void DebugPrint(std::map<T1, T2> &m){
   bool c = false;
   std::cout << "{";
   for (const auto &x : m)  {
+    if (c) {std::cout << ",";} else {c=true;}
     std::cout << x.first << ":" << x.second;
-    if (c) std::cout << ","; else c=1;
   }
   std::cout << "}";
 }
