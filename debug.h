@@ -4,51 +4,46 @@
 #include <map>
 #include <vector>
 
-template <typename T>
-void DebugPrint(T &&v) {
-  std::cout << v;
-}
-
-template <typename T>
-void DebugPrint(std::vector<T> &v) {
+template <class T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
   bool c = false;
-  std::cout << "[";
+  os << "[";
   for (const T &x : v) {
     if (c) {
-      std::cout << ",";
+      os << ",";
     } else {
       c = true;
     }
-    std::cout << x;
+    os << x;
   }
-  std::cout << "]";
+  os << "]";
+  return os;
 }
 
 template <typename T1, typename T2>
-void DebugPrint(std::map<T1, T2> &m) {
+std::ostream& operator<<(std::ostream& os, const std::map<T1, T2>& m) {
   bool c = false;
-  std::cout << "{";
-  for (const auto &x : m) {
+  os << "{";
+  for (const auto& x : m) {
     if (c) {
-      std::cout << ",";
+      os << ",";
     } else {
       c = true;
     }
-    std::cout << x.first << ":" << x.second;
+    os << x.first << ":" << x.second;
   }
-  std::cout << "}";
+  os << "}";
+  return os;
 }
 
 template <typename T>
-void LOG(T &&v) {
-  DebugPrint(v);
-  std::cout << std::endl;
+void LOG(T&& v) {
+  std::cout << v << std::endl;
 }
 
 template <typename T, typename... Ts>
-void LOG(T &&v, Ts &&...r) {
-  DebugPrint(v);
-  std::cout << " ";
+void LOG(T&& v, Ts&&... r) {
+  std::cout << v << " ";
   LOG(std::forward<Ts>(r)...);
 }
 
