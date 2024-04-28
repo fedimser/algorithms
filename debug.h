@@ -13,7 +13,7 @@ template <typename T>
 void DebugPrint(std::vector<T> &v) {
   bool c = false;
   std::cout << "[";
-  for (T &x : v) {
+  for (const T &x : v) {
     if (c) {
       std::cout << ",";
     } else {
