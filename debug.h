@@ -20,6 +20,22 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
   return os;
 }
 
+template <class T>
+std::ostream& operator<<(std::ostream& os, const std::set<T>& v) {
+  bool c = false;
+  os << "{";
+  for (const T &x : v) {
+    if (c) {
+      os << ",";
+    } else {
+      c = true;
+    }
+    os << x;
+  }
+  os << "}";
+  return os;
+}
+
 template <typename T1, typename T2>
 std::ostream& operator<<(std::ostream& os, const std::map<T1, T2>& m) {
   bool c = false;
