@@ -3,17 +3,19 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <set>
+
+template <class T1, class T2>
+std::ostream& operator<<(std::ostream& os, const std::pair<T1,T2>& p) {
+  os << "(" << p.first << "," << p.second << ")";
+}
 
 template <class T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
   bool c = false;
   os << "[";
-  for (const T &x : v) {
-    if (c) {
-      os << ",";
-    } else {
-      c = true;
-    }
+  for (const T& x : v) {
+    if (c) {os << ",";} else {c = true;}
     os << x;
   }
   os << "]";
@@ -24,12 +26,8 @@ template <class T>
 std::ostream& operator<<(std::ostream& os, const std::set<T>& v) {
   bool c = false;
   os << "{";
-  for (const T &x : v) {
-    if (c) {
-      os << ",";
-    } else {
-      c = true;
-    }
+  for (const T& x : v) {
+    if (c) {os << ",";} else {c = true;}
     os << x;
   }
   os << "}";
@@ -41,11 +39,7 @@ std::ostream& operator<<(std::ostream& os, const std::map<T1, T2>& m) {
   bool c = false;
   os << "{";
   for (const auto& x : m) {
-    if (c) {
-      os << ",";
-    } else {
-      c = true;
-    }
+    if (c) {os << ",";} else {c = true;}
     os << x.first << ":" << x.second;
   }
   os << "}";
