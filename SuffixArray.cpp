@@ -57,6 +57,7 @@ struct SAHelper {
   }
 
   int LongestCommonPrefix(int i, int j) {
+    if(i==j)return(n-1-i);
     int ans = 0;
     for (int k = c.size() - 1; k >= 0; k--) {
       if (c[k][i % n] == c[k][j % n]) {
@@ -86,5 +87,7 @@ int main() {
   assert(sah.LongestCommonPrefix(1, 5) == 3);
   assert(sah.LongestCommonPrefix(2, 6) == 2);
   assert(sah.LongestCommonPrefix(1, 2) == 0);
+  assert(sah.LongestCommonPrefix(0, 0) == 8);
+  assert(sah.LongestCommonPrefix(7, 7) == 1);
 }
 // Source: https://cp-algorithms.com/string/suffix-array.html
