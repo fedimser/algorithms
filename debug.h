@@ -8,6 +8,7 @@
 template <class T1, class T2>
 std::ostream& operator<<(std::ostream& os, const std::pair<T1,T2>& p) {
   os << "(" << p.first << "," << p.second << ")";
+  return os;
 }
 
 template <class T>
