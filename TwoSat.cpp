@@ -14,6 +14,7 @@ struct TwoSat {
     adj_t.resize(n);
   }
 
+  // Adds condition that x[v1]^negate1 -> x[v2]^negate2.
   void AddImplication(bool negate1, int v1, bool negate2, int v2) {
     assert(0 <= v1 && v1 < n / 2);
     assert(0 <= v2 && v2 < n / 2);
@@ -21,11 +22,19 @@ struct TwoSat {
     v2 = 2 * v2 + (negate2 ? 1 : 0);
     adj[v1].push_back(v2);
     adj_t[v2].push_back(v1);
+    adj[v2^1].push_back(v1^1);
+    adj_t[v1^1].push_back(v2^1);
   }
 
+  // Adds condition that x[v1]^negate1 OR x[v2]^negate2.
   void AddDisjunction(bool negate1, int v1, bool negate2, int v2) {
     AddImplication(!negate1, v1, negate2, v2);
-    AddImplication(!negate2, v2, negate1, v1);
+  }
+
+  // Adds condition that x[v1]^x[v2]=res.
+  void AddXor(int v1, int v2, bool res) {
+    AddImplication(false, v1, res, v2);
+    AddImplication(true, v1, !res, v2);
   }
 
   bool Solve() {
