@@ -44,3 +44,7 @@ algorithms. I might check in some of them into this repository later.
     - With update on range and query on range: https://codeforces.com/contest/1114/submission/49736495	
 
     - Binary search on segment tree (example): https://codeforces.com/contest/1440/submission/102673366
+
+* LCA + XorBasis: https://codeforces.com/contest/1902/submission/260593439
+
+* Trie: https://codeforces.com/contest/1902/submission/260591332
