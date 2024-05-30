@@ -48,3 +48,5 @@ algorithms. I might check in some of them into this repository later.
 * LCA + XorBasis: https://codeforces.com/contest/1902/submission/260593439
 
 * Trie: https://codeforces.com/contest/1902/submission/260591332
+
+* Sparse table: https://codeforces.com/contest/1879/submission/262920880

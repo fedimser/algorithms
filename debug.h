@@ -66,5 +66,5 @@ void ResetTime() { __start_time = std::chrono::system_clock::now(); }
 void LogTime(std::string message) {
   auto diff = std::chrono::system_clock::now() - __start_time;
   auto diff_ms = std::chrono::duration_cast<std::chrono::milliseconds>(diff);
-  std::cout << message << " " << diff_ms.count() << "ms" << std::endl;
+  std::cerr << message << " " << diff_ms.count() << "ms" << std::endl;
 }
