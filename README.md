@@ -50,3 +50,9 @@ algorithms. I might check in some of them into this repository later.
 * Trie: https://codeforces.com/contest/1902/submission/260591332
 
 * Sparse table: https://codeforces.com/contest/1879/submission/262920880
+
+* 0-1 BFS: https://codeforces.com/contest/1860/submission/263679738
+
+* Eulerian Path (undirected): https://codeforces.com/contest/1981/submission/263688257
+
+* Eulerian Path (directed): https://codeforces.com/contest/508/submission/263690188
