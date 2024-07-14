@@ -54,6 +54,12 @@ struct Hasher {
     }
     return ans;
   }
+
+  Hash ConcatHashes(const Hash& h1, int len1, const Hash& h2) const {
+    int64_t ans1 = (h1.first + p1[len1] * h2.first) % M1;
+    int64_t ans2 = (h1.second + p2[len1] * h2.second) % M2;
+    return make_pair(ans1, ans2);
+  }
 };
 Hasher HH(2000007);
  

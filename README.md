@@ -56,3 +56,7 @@ algorithms. I might check in some of them into this repository later.
 * Eulerian Path (undirected): https://codeforces.com/contest/1981/submission/263688257
 
 * Eulerian Path (directed): https://codeforces.com/contest/508/submission/263690188
+
+* Minimum Spanning Tree (Kruskal+DSU): https://codeforces.com/contest/1981/submission/263693183
+
+* DP over tree edges (example): https://codeforces.com/contest/1984/submission/264981777
