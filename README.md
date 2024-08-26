@@ -60,3 +60,5 @@ algorithms. I might check in some of them into this repository later.
 * Minimum Spanning Tree (Kruskal+DSU): https://codeforces.com/contest/1981/submission/263693183
 
 * DP over tree edges (example): https://codeforces.com/contest/1984/submission/264981777
+
+* BitVector + fast DP over bitmasks: https://codeforces.com/contest/1995/submission/278184683
