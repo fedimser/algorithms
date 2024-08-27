@@ -1,5 +1,5 @@
 // (c) Dmytro Fedoriaka, 2024.
-// Problem: https://acmp.ru/index.asp?main=bstatus&id_t=561
+// Problem: https://acmp.ru/index.asp?main=task&id_task=561
 // Solution idea: https://blog.mitrichev.ch/2019/06/power-towers-solution.html
 #include <bits/stdc++.h>
 using namespace std;
