@@ -23,7 +23,8 @@ struct IntMod {
   inline void operator *= (const IntMod& y) {v*=y.v; v%=MOD;}
 };
 inline IntMod operator / (const IntMod& x, const IntMod& y) {return x * y.inverse();}
-ostream& operator<<(ostream& os, const IntMod& x){return os<<x.v;}
+ostream& operator<<(ostream& os, const IntMod& x) { return os << x.v; }
+istream& operator>>(istream& is, IntMod& x) { return is >> x.v; }
 
 struct BinCoefs {
   vector<IntMod> fact_,inv_,inv_fact_;

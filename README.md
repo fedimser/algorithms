@@ -62,3 +62,5 @@ algorithms. I might check in some of them into this repository later.
 * DP over tree edges (example): https://codeforces.com/contest/1984/submission/264981777
 
 * BitVector + fast DP over bitmasks: https://codeforces.com/contest/1995/submission/278184683
+
+* XOR hashing: https://codeforces.com/contest/2014/submission/282526837
