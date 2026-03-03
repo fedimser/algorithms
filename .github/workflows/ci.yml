@@ -12,7 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Run tests
-        run: |
-          ./test.sh
-          python3 python/primes.py
+      - name: Run C++ tests
+        run: ./test-cpp.sh
+      - name: Run Rust tests
+        run: ./test-rust.sh
+        if: always()
+      - name: Run Python tests
+        run: ./test-python.sh
+        if: always()
