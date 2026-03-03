@@ -57,5 +57,4 @@ assert factorize(216) == [(2,3), (3,3)]
 assert factorize(920663414723656061) == [(920663414723656061,1)]
 assert factorize(329103252131530141) == [(509452343,1),(645994187,1)]
 assert factorize(786550534649646649) == [(886876843,2)]
-assert 2==3
 print("primes.py OK")
