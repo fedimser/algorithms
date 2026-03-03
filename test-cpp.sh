@@ -6,7 +6,6 @@
 set -e
 
 for FILE in *; do
-  echo "file: $FILE";
   if [[ "$FILE" == *".cpp" ]]; then
     echo "Compiling $FILE...";
     g++ $FILE -o $FILE.exe
