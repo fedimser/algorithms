@@ -132,7 +132,7 @@ fn main() {
     test_primes(&pr, 30030, vec![2, 3, 5, 7, 11, 13]);
     test_primes(&pr, 67500, vec![2, 3, 5]);
     test_primes(&pr, 707960, vec![2, 5, 11, 1609]);
-    test_primes(&pr, 1_000_000, vec![2, 6]);
+    test_primes(&pr, 1_000_000, vec![2, 5]);
     test_primes(&pr, 1_000_001, vec![101, 9901]);
     test_primes(&pr, 21_999_626, vec![2, 11, 999_983]);
     test_primes(&pr, 967_983_544, vec![2, 11, 999_983]);
