@@ -14,10 +14,9 @@ jobs:
       - uses: actions/checkout@v1
       - name: Run C++ tests
         run: ./test-cpp.sh
-        continue-on-error: true
       - name: Run Rust tests
         run: ./test-rust.sh
-        continue-on-error: true
+        if: always()
       - name: Run Python tests
         run: python3 python/primes.py
-        continue-on-error: true
+        if: always()
